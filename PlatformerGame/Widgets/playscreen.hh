@@ -1,6 +1,8 @@
 #ifndef PLAYSCREEN_HH
 #define PLAYSCREEN_HH
 
+#include "Actors/protagonist.hh"
+
 #include <QWidget>
 #include <memory>
 #include <QGraphicsScene>
@@ -18,13 +20,17 @@ public:
     explicit PlayScreen(QWidget *parent = 0);
     ~PlayScreen();
 
+    // Initialization methods.
     bool initGraphics();
+    bool initHero();
 
 private:
     Ui::PlayScreen *ui;
 
     std::shared_ptr<QGraphicsScene> scene_;
     std::shared_ptr<QGraphicsView> view_;
+
+    std::shared_ptr<Protagonist> hero_;
 };
 
 #endif // PLAYSCREEN_HH
