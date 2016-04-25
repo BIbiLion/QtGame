@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/graphics">
         <file>Resources/chibiProt.png</file>
+        <file>Resources/grumpy.png</file>
     </qresource>
     <qresource prefix="/sounds"/>
 </RCC>

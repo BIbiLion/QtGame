@@ -10,18 +10,23 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PlatformerGame
 TEMPLATE = app
+CONFIG += C+11
 
 
 SOURCES += main.cc\
         Widgets/firstwindow.cc \
     Actors/characterIF.cc \
-    protagonist.cc
+    Actors/protagonist.cc \
+    Widgets/playscreen.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/characterIF.hh \
-    protagonist.hh
+    Actors/protagonist.hh \
+    Widgets/playscreen.hh
 
-FORMS    += Widgets/firstwindow.ui
+FORMS    += Widgets/firstwindow.ui \
+    Widgets/playscreen.ui
 
 RESOURCES += \
     resources.qrc
+
