@@ -7,6 +7,18 @@ class Character
 public:
     Character();
 
+    /*
+     * Precondition:
+     *
+     *
+     * Postcondition:
+     *
+     *
+    */
+    virtual void accelerateX() = 0;
+
+    virtual void accelerateY() = 0;
+
 private:
 
 };
