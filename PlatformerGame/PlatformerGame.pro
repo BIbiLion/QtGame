@@ -15,7 +15,6 @@ CONFIG += C+11
 
 SOURCES += main.cc\
         Widgets/firstwindow.cc \
-    Actors/characterIF.cc \
     Actors/protagonist.cc \
     Widgets/playscreen.cc
 
