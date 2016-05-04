@@ -3,8 +3,9 @@
 
 #include "Actors/protagonist.hh"
 
-#include <QWidget>
 #include <memory>
+#include <vector>
+#include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
@@ -23,6 +24,7 @@ public:
     // Initialization methods.
     bool initGraphics();
     bool initHero();
+    bool initStage();
 
 private:
     Ui::PlayScreen *ui;
@@ -31,6 +33,8 @@ private:
     std::shared_ptr<QGraphicsView> view_;
 
     std::shared_ptr<Protagonist> hero_;
+
+    std::vector<void(*)()> gravity;
 };
 
 #endif // PLAYSCREEN_HH

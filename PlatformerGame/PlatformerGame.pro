@@ -16,13 +16,15 @@ CONFIG += C+11
 SOURCES += main.cc\
         Widgets/firstwindow.cc \
     Actors/protagonist.cc \
-    Widgets/playscreen.cc
+    Widgets/playscreen.cc \
+    Obstacles/horizontalbrickwall.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/protagonist.hh \
     Widgets/playscreen.hh \
     Interface/obstacleif.hh \
-    Interface/characterif.hh
+    Interface/characterif.hh \
+    Obstacles/horizontalbrickwall.hh
 
 FORMS    += Widgets/firstwindow.ui \
     Widgets/playscreen.ui

@@ -2,6 +2,7 @@
 #include "ui_playscreen.h"
 
 #include "Actors/protagonist.hh"
+#include "Obstacles/horizontalbrickwall.hh"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -15,6 +16,9 @@ PlayScreen::PlayScreen(QWidget *parent) :
 
     // Let's initialize the graphics.
     initGraphics();
+
+    // Now set the stage ;)
+    initStage();
 
     // Here we initialize the hero.
     initHero();
@@ -56,12 +60,23 @@ bool
 PlayScreen::initHero()
 {
     hero_.reset( new Protagonist );
-    hero_->setPos( 100, 100 );
+    //hero_->setPos( 100, 100 );
+    hero_->setPos( 10, scene_->height() / 2 );
 
     hero_->setFlag( QGraphicsItem::ItemIsFocusable );
     hero_->setFocus();
 
     scene_->addItem( hero_.get() );
+
+    return true;
+}
+
+bool
+PlayScreen::initStage()
+{
+    HorizontalBrickwall * floor = new HorizontalBrickwall;
+    floor->setPos( 50, scene_->height() - 100 );
+    scene_->addItem( floor );
 
     return true;
 }
