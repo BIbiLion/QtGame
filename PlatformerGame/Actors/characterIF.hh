@@ -1,11 +1,11 @@
-#ifndef CHARACTER_HH
-#define CHARACTER_HH
+#ifndef CHARACTERIF_HH
+#define CHARACTERIF_HH
 
 
-class Character
+class CharacterIF
 {
 public:
-    Character();
+    CharacterIF();
 
     /*
      * Precondition:
@@ -19,8 +19,29 @@ public:
 
     virtual void accelerateY() = 0;
 
+    /*
+     *
+     * Description:
+     *  Alters the amount of HP a character has.
+     *
+    */
+    void setHitpoints( int Points );
+
+    /*
+     *
+     * Description:
+     *  Returns the amount of HP a character has.
+     *
+    */
+    unsigned int getHitpoints() const;
+
 private:
+    /*
+     * A character has the following internal variables:
+     * Hitpoints_, MaxHitpoints_, Speed_
+     *
+    */
 
 };
 
-#endif // CHARACTER_HH
+#endif // CHARACTERIF_HH
