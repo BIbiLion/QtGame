@@ -16,12 +16,14 @@ CONFIG += C+11
 SOURCES += main.cc\
         Widgets/firstwindow.cc \
     Actors/protagonist.cc \
-    Widgets/playscreen.cc
+    Widgets/playscreen.cc \
+    Actors/obstacleif.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/characterIF.hh \
     Actors/protagonist.hh \
-    Widgets/playscreen.hh
+    Widgets/playscreen.hh \
+    Actors/obstacleif.hh
 
 FORMS    += Widgets/firstwindow.ui \
     Widgets/playscreen.ui
