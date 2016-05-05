@@ -5,8 +5,8 @@
 class CharacterIF
 {
 public:
-
-    virtual ~CharacterIF();
+    CharacterIF() = default;
+    virtual ~CharacterIF() = default;
 
     /*
      * Precondition:
@@ -41,7 +41,7 @@ public:
      * A function for providing gravity to a character.
      * Used as a function pointer.
      */
-    void gravity();
+    virtual void gravity() = 0;
 
 private:
     /*

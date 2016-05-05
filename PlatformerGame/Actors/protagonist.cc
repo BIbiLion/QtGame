@@ -1,4 +1,5 @@
 #include "Actors/protagonist.hh"
+#include "Interface/characterif.hh"
 
 #include <QKeyEvent>
 
@@ -7,12 +8,43 @@ Protagonist::Protagonist()
     initArt();
 }
 
+Protagonist::~Protagonist()
+{
+
+}
+
 bool Protagonist::initArt()
 {
     setPixmap( QPixmap( ":/graphics/Resources/chibiProt.png" ) );
     setScale( 0.1 );
 
     return true;
+}
+
+void Protagonist::accelerateX()
+{
+
+}
+
+void Protagonist::accelerateY()
+{
+
+}
+
+void Protagonist::setHitpoints(int Points)
+{
+
+}
+
+unsigned int Protagonist::getHitpoints()
+{
+    // TODO: this function
+    return 0;
+}
+
+void Protagonist::gravity()
+{
+
 }
 
 void Protagonist::keyPressEvent( QKeyEvent * Event )

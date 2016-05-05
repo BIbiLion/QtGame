@@ -12,8 +12,8 @@
 class ObstacleIF
 {
 public:
-    ObstacleIF(){}
-    virtual ~ObstacleIF();
+    ObstacleIF() = default;
+    virtual ~ObstacleIF() = default;
     virtual void initGraphics() = 0;
 };
 
