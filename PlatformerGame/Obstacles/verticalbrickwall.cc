@@ -16,5 +16,5 @@ void VerticalBrickwall::initGraphics()
 {
     QImage img{":/graphics/Resources/brickwall.jpg"};
 
-    setPixmap( QPixmap().fromImage( img.mirrored( true, true ) ) );
+    setPixmap( QPixmap().fromImage( img.mirrored( true, false ) ) );
 }

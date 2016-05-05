@@ -18,7 +18,8 @@ SOURCES += main.cc\
     Actors/protagonist.cc \
     Widgets/playscreen.cc \
     Obstacles/horizontalbrickwall.cc \
-    Obstacles/verticalbrickwall.cc
+    Obstacles/verticalbrickwall.cc \
+    Physics/gravitier.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/protagonist.hh \
@@ -26,7 +27,8 @@ HEADERS  += Widgets/firstwindow.hh \
     Interface/obstacleif.hh \
     Interface/characterif.hh \
     Obstacles/horizontalbrickwall.hh \
-    Obstacles/verticalbrickwall.hh
+    Obstacles/verticalbrickwall.hh \
+    Physics/gravitier.hh
 
 FORMS    += Widgets/firstwindow.ui \
     Widgets/playscreen.ui
