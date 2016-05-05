@@ -3,6 +3,7 @@
 
 #include "Actors/protagonist.hh"
 #include "Obstacles/horizontalbrickwall.hh"
+#include "Obstacles/verticalbrickwall.hh"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -77,6 +78,10 @@ PlayScreen::initStage()
     HorizontalBrickwall * floor = new HorizontalBrickwall;
     floor->setPos( 50, scene_->height() - 100 );
     scene_->addItem( floor );
+
+    VerticalBrickwall * wall = new VerticalBrickwall;
+    wall->setPos( 400, scene_->height() - 50 );
+    scene_->addItem( wall );
 
     return true;
 }

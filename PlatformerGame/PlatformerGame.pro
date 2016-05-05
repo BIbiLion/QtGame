@@ -17,14 +17,16 @@ SOURCES += main.cc\
         Widgets/firstwindow.cc \
     Actors/protagonist.cc \
     Widgets/playscreen.cc \
-    Obstacles/horizontalbrickwall.cc
+    Obstacles/horizontalbrickwall.cc \
+    Obstacles/verticalbrickwall.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/protagonist.hh \
     Widgets/playscreen.hh \
     Interface/obstacleif.hh \
     Interface/characterif.hh \
-    Obstacles/horizontalbrickwall.hh
+    Obstacles/horizontalbrickwall.hh \
+    Obstacles/verticalbrickwall.hh
 
 FORMS    += Widgets/firstwindow.ui \
     Widgets/playscreen.ui
