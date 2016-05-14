@@ -2,10 +2,12 @@
 #include "Interface/characterif.hh"
 
 #include <QKeyEvent>
+#include <QObject>
 
 Protagonist::Protagonist()
 {
     initArt();
+    initGravity();
 }
 
 Protagonist::~Protagonist()
@@ -17,6 +19,17 @@ bool Protagonist::initArt()
 {
     setPixmap( QPixmap( ":/graphics/Resources/chibiProt.png" ) );
     setScale( 0.1 );
+
+    return true;
+}
+
+bool Protagonist::initGravity()
+{
+    gravityTimer = new QTimer;
+
+    QObject::connect( gravityTimer, SIGNAL( timeout() ),
+                      this, SLOT( gravitySlot() ) );
+    gravityTimer->start(50);
 
     return true;
 }
@@ -36,15 +49,14 @@ void Protagonist::setHitpoints(int Points)
 
 }
 
-unsigned int Protagonist::getHitpoints()
+unsigned int Protagonist::getHitpoints() const
 {
-    // TODO: this function
     return 0;
 }
 
 void Protagonist::gravity()
 {
-
+    setY( y() + 2 );
 }
 
 void Protagonist::keyPressEvent( QKeyEvent * Event )
@@ -65,4 +77,9 @@ void Protagonist::keyPressEvent( QKeyEvent * Event )
     {
         setX( x() + 5 );
     }
+}
+
+void Protagonist::gravitySlot()
+{
+    gravity();
 }

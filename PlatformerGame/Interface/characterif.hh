@@ -26,7 +26,7 @@ public:
      *  Alters the amount of HP a character has.
      *
     */
-    void setHitpoints( int Points );
+    virtual void setHitpoints( int Points ) = 0;
 
     /*
      *
@@ -34,7 +34,7 @@ public:
      *  Returns the amount of HP a character has.
      *
     */
-    unsigned int getHitpoints() const;
+    virtual unsigned int getHitpoints() const = 0;
 
     /*
      * Description:
