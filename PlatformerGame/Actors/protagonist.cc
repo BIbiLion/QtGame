@@ -6,13 +6,19 @@
 
 Protagonist::Protagonist()
 {
-    initArt();
-    initGravity();
+    init();
 }
 
 Protagonist::~Protagonist()
 {
 
+}
+
+bool
+Protagonist::init()
+{
+    initArt();
+    initPhysics();
 }
 
 bool Protagonist::initArt()
@@ -32,6 +38,11 @@ bool Protagonist::initGravity()
     gravityTimer->start(50);
 
     return true;
+}
+
+bool Protagonist::initPhysics()
+{
+    footCollision_ = FloorContactBox( pos(), boundingRect() );
 }
 
 void Protagonist::accelerateX()

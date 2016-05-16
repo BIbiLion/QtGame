@@ -2,6 +2,7 @@
 #define PROTAGONIST_HH
 
 #include "Interface/characterif.hh"
+#include "Physics/floorcontactbox.hh"
 
 #include <memory>
 
@@ -19,8 +20,10 @@ public:
     virtual ~Protagonist();
 
     // Initiation functions
+    bool init();
     bool initArt();
     bool initGravity();
+    bool initPhysics();
 
     // CharacterIF functions:
     virtual void accelerateX();
@@ -34,6 +37,7 @@ public slots:
     void gravitySlot();
 
 private:
+    FloorContactBox footCollision_;
     QTimer * gravityTimer;
 
 };
