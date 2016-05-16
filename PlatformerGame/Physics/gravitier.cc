@@ -4,21 +4,20 @@
 #include <QList>
 #include <QGraphicsItem>
 
-Gravitier::Gravitier(QGraphicsScene *Scene, QObject *parent)
-{
-    scene_ = Scene;
-}
 
-void Gravitier::gravity()
+void physics::gravitier(QGraphicsScene *Scene)
 {
-    QList<QGraphicsItem*> list{ scene_->items() };
-
-    for ( auto element : list )
+    QList<QGraphicsItem*> itemList;
+    while( true )
     {
-        if( CharacterIF * tmp = dynamic_cast<CharacterIF*>(element) )
+        itemList = Scene->items();
+
+        for( auto item : itemList )
         {
-            // TODO: Here goes the call to the gravity function of each graphicsobject
-            //tmp->gravity();
+            if ( CharacterIF * tmpChar = dynamic_cast<CharacterIF*>( item ) )
+            {
+
+            }
         }
     }
 }

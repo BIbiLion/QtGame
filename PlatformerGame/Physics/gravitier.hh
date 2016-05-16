@@ -4,19 +4,10 @@
 #include <QObject>
 #include <QGraphicsScene>
 
-class Gravitier : public QObject
+namespace physics
 {
-    Q_OBJECT
-public:
-    explicit Gravitier( QGraphicsScene * Scene, QObject *parent = 0);
+    void gravitier( QGraphicsScene * Scene );
+}
 
-signals:
-
-public slots:
-    void gravity();
-
-private:
-    QGraphicsScene * scene_;
-};
 
 #endif // GRAVITIER_HH
