@@ -4,15 +4,17 @@
 #include "Actors/protagonist.hh"
 #include "Obstacles/horizontalbrickwall.hh"
 #include "Obstacles/verticalbrickwall.hh"
+#include "Physics/gravitier.hh"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
-//#include <QtGlobal>
+#include <qtconcurrentrun.h>
 
 PlayScreen::PlayScreen(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PlayScreen)
 {
+
     ui->setupUi(this);
 
     // Let's initialize the graphics.
@@ -26,6 +28,8 @@ PlayScreen::PlayScreen(QWidget *parent) :
 
     // Show the game in the widget.
     ui->layout->addWidget( view_.get() );
+
+    QFuture<void> physics = QtConcurrent::run( physics::gravitier, scene_.get() );
 }
 
 PlayScreen::~PlayScreen()
@@ -62,7 +66,7 @@ PlayScreen::initHero()
 {
     hero_.reset( new Protagonist );
     //hero_->setPos( 100, 100 );
-    hero_->setPos( 10, scene_->height() / 2 );
+    hero_->setPos( 100, scene_->height() / 2 );
 
     hero_->setFlag( QGraphicsItem::ItemIsFocusable );
     hero_->setFocus();

@@ -40,6 +40,7 @@ private:
     FloorContactBox footCollision_;
     QTimer * gravityTimer;
 
+    long int speed_x_, speed_y_;
 };
 
 #endif // PROTAGONIST_HH
