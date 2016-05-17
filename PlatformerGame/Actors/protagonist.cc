@@ -42,7 +42,7 @@ bool Protagonist::initGravity()
 
 bool Protagonist::initPhysics()
 {
-    footCollision_ = FloorContactBox( pos(), boundingRect() );
+    footCollision_.setPosAndWidth( pos(), boundingRect() );
 }
 
 void Protagonist::accelerateX()

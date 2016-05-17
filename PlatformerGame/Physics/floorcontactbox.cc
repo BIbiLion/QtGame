@@ -2,16 +2,10 @@
 
 #include <QRectF>
 
-FloorContactBox::FloorContactBox(const FloorContactBox &Other):
+void FloorContactBox::setPosAndWidth(const QPointF &ParentPos, const QRectF &Rect)
 {
-    setX( Other.x() );
-    setY( Other.y() );
-}
-
-FloorContactBox::FloorContactBox(const QPointF &ParentPos, const QRectF &Rect)
-{
-    setPos( ParentPos );
-    setY( y() + Rect.height() );
+    setRect( ParentPos.x() + 1, ParentPos.y() + Rect.height() ,
+             Rect.width() - 2 , 1 );
 }
 
 void FloorContactBox::move(const int &XSpeed, const int &YSpeed)

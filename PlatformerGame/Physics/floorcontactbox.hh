@@ -17,23 +17,7 @@ public:
     ///
     FloorContactBox( ){}
 
-    ///
-    /// \brief FloorContactBox
-    /// Copy constructor.
-    ///
-    /// \param Other
-    /// The instance from which this one is copied.
-    ///
-    FloorContactBox( const FloorContactBox & Other );
-
-    ///
-    /// \brief FloorContactBox
-    /// Creates a collisionbox at the feet/bottom of the parent item.
-    ///
-    /// \param ParentPos
-    /// The position of the parent item.
-    ///
-    FloorContactBox(const QPointF & ParentPos, const QRectF &Rect );
+    void setPosAndWidth( const QPointF & ParentPos, const QRectF &Rect  );
 
     ///
     /// \brief move
