@@ -30,6 +30,8 @@ PlayScreen::PlayScreen(QWidget *parent) :
     ui->layout->addWidget( view_.get() );
 
     QFuture<void> physics = QtConcurrent::run( physics::gravitier, scene_.get() );
+    qDebug() << "mainThread:    Thread started. Moving on. " << physics.isRunning();
+
 }
 
 PlayScreen::~PlayScreen()

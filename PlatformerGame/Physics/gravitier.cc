@@ -3,9 +3,12 @@
 
 #include <memory>
 
+#include <QDebug>
 #include <QList>
 #include <QGraphicsItem>
 #include <QTimer>
+
+#include <QThread>
 
 void physics::gravitier(QGraphicsScene *Scene)
 {
@@ -16,33 +19,51 @@ void physics::gravitier(QGraphicsScene *Scene)
     // Some kind of a signal or a flag.
 
     Gravitier gravitier{ Scene };
+    qDebug() << " Thread1: Gravitier initiated. " << gravitier.objectName();
 
-    gravitier.gravity();
+    //gravitier.gravity();
+    qDebug() << "Thread1: Gravitier.gravity finished. ";
+
+    QTimer * timer = new QTimer;
+    QObject::connect( timer , SIGNAL( timeout() ),
+                          &gravitier,                 SLOT( makeGravity() ) );
+    timer->start( 50 );
+    qDebug() << "Thread1: Connected timer with gravitier. " << timer->isSingleShot();
+
+
+    gravitier.makeGravity();
+    //QThread::sleep( 2 );
+    for( int i = 0; i < 100; ++i )
+    {
+    }
+    qDebug() << "Thread1: Entering loop.";
+    while( true )    {    }
 }
 
 Gravitier::Gravitier(QGraphicsScene *Scene)
 {
     scene_ = Scene;
 
-    gravityTimer_.reset( new QTimer );
+    //gravityTimer_.reset( new QTimer );
 
+    //QObject::connect( gravityTimer_.get() , SIGNAL( timeout() ),
+                      //this,                 SLOT( makeGravity() ) );
 }
 
 void Gravitier::gravity()
 {
-
     // TODO:
     // this function needs a means for itself to end.
     // Some kind of a signal or a flag.
 
-    QObject::connect( gravityTimer_.get() , SIGNAL( timeout() ),
-                      this,                 SLOT( makeGravity() ) );
     gravityTimer_->start( 50 );
-
+    qDebug() << "Thread1: Should fall now.";
 }
 
 void Gravitier::makeGravity()
 {
+    qDebug() << "Thread1: Making gravity now.";
+
     QList<QGraphicsItem*> itemList = scene_->items();
 
     for( auto item : itemList )
