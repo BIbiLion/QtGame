@@ -42,7 +42,7 @@ Gravitier::Gravitier(QGraphicsScene *Scene)
 
 void Gravitier::makeGravity()
 {
-    qDebug() << "Gravitier::makeGravity()";
+    //qDebug() << "Gravitier::makeGravity()";
 
     QList<QGraphicsItem*> itemList = scene_->items();
 
@@ -51,7 +51,12 @@ void Gravitier::makeGravity()
         // Make everybody fall
         if ( CharacterIF * tmpChar = dynamic_cast<CharacterIF*>( item ) )
         {
-            tmpChar->gravity();
+            //tmpChar->gravity();
+            emit moveThisOne( tmpChar );
+            //qDebug() << "Character: " << tmpChar;
+        }else
+        {
+
         }
     }
 }

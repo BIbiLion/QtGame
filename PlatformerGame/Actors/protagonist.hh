@@ -31,6 +31,7 @@ public:
     virtual void setHitpoints( int Points );
     virtual unsigned int getHitpoints() const;
     virtual void gravity();
+    virtual void move();
 
     void keyPressEvent(QKeyEvent *Event);
 public slots:

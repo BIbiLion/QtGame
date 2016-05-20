@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QObject>
+#include <QDebug>
 
 Protagonist::Protagonist()
 {
@@ -44,6 +45,9 @@ bool Protagonist::initGravity()
 
 bool Protagonist::initPhysics()
 {
+    speed_x_ = 0;
+    speed_y_ = 0;
+
     footCollision_.setPosAndWidth( pos(), boundingRect() );
 
     return true;
@@ -71,16 +75,23 @@ unsigned int Protagonist::getHitpoints() const
 
 void Protagonist::gravity()
 {
+    //qDebug() << "Protagonist::gravity()";
+    if( speed_y_ < 10 )
+        speed_y_ += 2;
+}
 
-    if( y() < scene()->height() - 40 )
-        setY( y() + 2 );
+void Protagonist::move()
+{
+    setX( x() + speed_x_ );
+    if( y() < scene()->height() -20 )
+        setY( y() + speed_y_ );
 }
 
 void Protagonist::keyPressEvent( QKeyEvent * Event )
 {
     if( Event->key() == Qt::Key_Up )
     {
-        setY( 20 );
+        speed_y_ = -20;
     }
     else if( Event->key() == Qt::Key_Down )
     {
@@ -88,11 +99,13 @@ void Protagonist::keyPressEvent( QKeyEvent * Event )
     }
     else if( Event->key() == Qt::Key_Left )
     {
-        setX( x() - 5 );
+        if ( speed_x_ > -10)
+            speed_x_ -= 2;
     }
     else if( Event->key() == Qt::Key_Right )
     {
-        setX( x() + 5 );
+        if ( speed_x_ < 10)
+            speed_x_ += 2;
     }
 }
 

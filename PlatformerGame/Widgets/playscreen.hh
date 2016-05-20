@@ -2,6 +2,7 @@
 #define PLAYSCREEN_HH
 
 #include "Actors/protagonist.hh"
+#include "Interface/characterif.hh"
 
 #include <memory>
 #include <vector>
@@ -18,7 +19,6 @@ class PlayScreen;
 class PlayScreen : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit PlayScreen(QWidget *parent = 0);
     ~PlayScreen();
@@ -27,6 +27,10 @@ public:
     bool initGraphics();
     bool initHero();
     bool initStage();
+
+public slots:
+    void gravity_this_one( CharacterIF * thisOne );
+    void moveThisOne( CharacterIF * thisOne );
 
 private:
     Ui::PlayScreen *ui;

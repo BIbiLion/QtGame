@@ -43,6 +43,8 @@ public:
      */
     virtual void gravity() = 0;
 
+    virtual void move() = 0;
+
 private:
     /*
      * A character has the following internal variables:

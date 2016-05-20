@@ -33,11 +33,11 @@ PlayScreen::PlayScreen(QWidget *parent) :
     //GravityThread gravity{ scene_.get() };
     //gravity.run();
 
-    physicsThread_.reset( new QThread );
+    physicsThread_.reset( new QThread(this) );
     QTimer * gravityTimer{ new QTimer };
     Gravitier * gravitor{ new Gravitier( scene_.get() ) };
 
-    gravityTimer->start( 5000 );
+    gravityTimer->start( 50 );
     gravityTimer->moveToThread( physicsThread_.data() );
 
     QObject::connect( physicsThread_.data(), SIGNAL( started() ),
@@ -45,6 +45,13 @@ PlayScreen::PlayScreen(QWidget *parent) :
 
     QObject::connect( gravityTimer, SIGNAL(timeout()), gravitor, SLOT( makeGravity() ) );
     gravitor->moveToThread( physicsThread_.data() );
+
+    //scene_->moveToThread( physicsThread_.data() );
+    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
+                this, SLOT(moveThisOne(CharacterIF*) ) );
+
+    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
+             this, SLOT(gravity_this_one(CharacterIF*) ) );
 
     physicsThread_.data()->start(); qDebug() << "mainThread:    Thread started. Moving on. ";
 }
@@ -104,4 +111,14 @@ PlayScreen::initStage()
     scene_->addItem( wall );
 
     return true;
+}
+
+void PlayScreen::gravity_this_one(CharacterIF *thisOne)
+{
+    thisOne->gravity();
+}
+
+void PlayScreen::moveThisOne(CharacterIF *thisOne)
+{
+    thisOne->move();
 }

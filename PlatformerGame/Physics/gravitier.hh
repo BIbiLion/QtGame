@@ -1,6 +1,7 @@
 #ifndef GRAVITIER_HH
 #define GRAVITIER_HH
 
+#include "Interface/characterif.hh"
 
 #include <QSharedPointer>
 #include <QObject>
@@ -12,6 +13,9 @@ class Gravitier : public QObject
     Q_OBJECT
 public:
     Gravitier( QGraphicsScene * Scene );
+
+signals:
+    void moveThisOne( CharacterIF * thisOne );
 
 public slots:
     void makeGravity();
