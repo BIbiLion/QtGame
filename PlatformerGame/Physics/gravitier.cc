@@ -10,10 +10,8 @@
 
 #include <QThread>
 
-void physics::gravitier(QGraphicsScene *Scene)
+void Physpace::gravitier(QGraphicsScene *Scene)
 {
-    QList<QGraphicsItem*> itemList;
-
     // TODO:
     // this function needs a means for itself to end.
     // Some kind of a signal or a flag.
@@ -32,38 +30,19 @@ void physics::gravitier(QGraphicsScene *Scene)
 
 
     gravitier.makeGravity();
-    //QThread::sleep( 2 );
-    QThread::exec();
-    for( int i = 0; i < 100; ++i )
-    {
-    }
-    qDebug() << "Thread1: Entering loop.";
-    while( true )    {    }
 }
 
 Gravitier::Gravitier(QGraphicsScene *Scene)
 {
     scene_ = Scene;
-
-    //gravityTimer_.reset( new QTimer );
-
-    //QObject::connect( gravityTimer_.get() , SIGNAL( timeout() ),
-                      //this,                 SLOT( makeGravity() ) );
-}
-
-void Gravitier::gravity()
-{
-    // TODO:
-    // this function needs a means for itself to end.
-    // Some kind of a signal or a flag.
-
-    gravityTimer_->start( 50 );
-    qDebug() << "Thread1: Should fall now.";
+    /*gravityTimer_.reset( new QTimer );
+    QObject::connect( gravityTimer_.data() , SIGNAL( timeout() ),
+                      this,                 SLOT( makeGravity() ) );*/
 }
 
 void Gravitier::makeGravity()
 {
-    qDebug() << "Thread1: Making gravity now.";
+    qDebug() << "Gravitier::makeGravity()";
 
     QList<QGraphicsItem*> itemList = scene_->items();
 

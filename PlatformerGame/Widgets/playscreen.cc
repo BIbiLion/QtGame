@@ -6,9 +6,10 @@
 #include "Obstacles/verticalbrickwall.hh"
 #include "Physics/gravitier.hh"
 
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <qtconcurrentrun.h>
+#include <QDebug>
 
 PlayScreen::PlayScreen(QWidget *parent) :
     QWidget(parent),
@@ -29,9 +30,23 @@ PlayScreen::PlayScreen(QWidget *parent) :
     // Show the game in the widget.
     ui->layout->addWidget( view_.get() );
 
-    QFuture<void> physics = QtConcurrent::run( physics::gravitier, scene_.get() );
-    qDebug() << "mainThread:    Thread started. Moving on. " << physics.isRunning();
+    //GravityThread gravity{ scene_.get() };
+    //gravity.run();
 
+    physicsThread_.reset( new QThread );
+    QTimer * gravityTimer{ new QTimer };
+    Gravitier * gravitor{ new Gravitier( scene_.get() ) };
+
+    gravityTimer->start( 5000 );
+    gravityTimer->moveToThread( physicsThread_.data() );
+
+    QObject::connect( physicsThread_.data(), SIGNAL( started() ),
+                      gravityTimer, SLOT( start() ) );
+
+    QObject::connect( gravityTimer, SIGNAL(timeout()), gravitor, SLOT( makeGravity() ) );
+    gravitor->moveToThread( physicsThread_.data() );
+
+    physicsThread_.data()->start(); qDebug() << "mainThread:    Thread started. Moving on. ";
 }
 
 PlayScreen::~PlayScreen()
@@ -58,7 +73,6 @@ PlayScreen::initGraphics()
     //view_->setSceneRect( scene_->sceneRect() );
     view_->setMinimumHeight( scene_->height() + 10 );
     view_->setMinimumWidth( scene_->width() + 10 );
-
 
     return true;
 }

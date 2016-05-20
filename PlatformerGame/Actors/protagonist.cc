@@ -1,6 +1,7 @@
 #include "Actors/protagonist.hh"
 #include "Interface/characterif.hh"
 
+#include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QObject>
 
@@ -19,6 +20,7 @@ Protagonist::init()
 {
     initArt();
     initPhysics();
+    return true;
 }
 
 bool Protagonist::initArt()
@@ -43,6 +45,8 @@ bool Protagonist::initGravity()
 bool Protagonist::initPhysics()
 {
     footCollision_.setPosAndWidth( pos(), boundingRect() );
+
+    return true;
 }
 
 void Protagonist::accelerateX()
@@ -67,14 +71,16 @@ unsigned int Protagonist::getHitpoints() const
 
 void Protagonist::gravity()
 {
-    setY( y() + 2 );
+
+    if( y() < scene()->height() - 40 )
+        setY( y() + 2 );
 }
 
 void Protagonist::keyPressEvent( QKeyEvent * Event )
 {
     if( Event->key() == Qt::Key_Up )
     {
-
+        setY( 20 );
     }
     else if( Event->key() == Qt::Key_Down )
     {

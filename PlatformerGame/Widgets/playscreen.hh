@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QThread>
+#include <QSharedPointer>
 
 namespace Ui {
 class PlayScreen;
@@ -34,7 +36,8 @@ private:
 
     std::shared_ptr<Protagonist> hero_;
 
-    std::vector<void(*)()> gravity;
+    //std::vector<void(*)()> gravity;
+    QSharedPointer<QThread> physicsThread_;
 };
 
 #endif // PLAYSCREEN_HH

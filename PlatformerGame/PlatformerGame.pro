@@ -20,8 +20,7 @@ SOURCES += main.cc\
     Obstacles/horizontalbrickwall.cc \
     Obstacles/verticalbrickwall.cc \
     Physics/gravitier.cc \
-    Physics/floorcontactbox.cc \
-    gravitythread.cc
+    Physics/floorcontactbox.cc
 
 HEADERS  += Widgets/firstwindow.hh \
     Actors/protagonist.hh \
@@ -31,8 +30,7 @@ HEADERS  += Widgets/firstwindow.hh \
     Obstacles/horizontalbrickwall.hh \
     Obstacles/verticalbrickwall.hh \
     Physics/gravitier.hh \
-    Physics/floorcontactbox.hh \
-    gravitythread.hh
+    Physics/floorcontactbox.hh
 
 FORMS    += Widgets/firstwindow.ui \
     Widgets/playscreen.ui
