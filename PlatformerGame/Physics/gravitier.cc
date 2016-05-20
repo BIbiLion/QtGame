@@ -33,6 +33,7 @@ void physics::gravitier(QGraphicsScene *Scene)
 
     gravitier.makeGravity();
     //QThread::sleep( 2 );
+    QThread::exec();
     for( int i = 0; i < 100; ++i )
     {
     }
