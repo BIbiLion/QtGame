@@ -27,33 +27,12 @@ PlayScreen::PlayScreen(QWidget *parent) :
     // Here we initialize the hero.
     initHero();
 
+    // Put the physics in.
+    initPhysics();
+
     // Show the game in the widget.
     ui->layout->addWidget( view_.get() );
 
-    //GravityThread gravity{ scene_.get() };
-    //gravity.run();
-
-    physicsThread_.reset( new QThread(this) );
-    QTimer * gravityTimer{ new QTimer };
-    Gravitier * gravitor{ new Gravitier( scene_.get() ) };
-
-    gravityTimer->start( 50 );
-    gravityTimer->moveToThread( physicsThread_.data() );
-
-    QObject::connect( physicsThread_.data(), SIGNAL( started() ),
-                      gravityTimer, SLOT( start() ) );
-
-    QObject::connect( gravityTimer, SIGNAL(timeout()), gravitor, SLOT( makeGravity() ) );
-    gravitor->moveToThread( physicsThread_.data() );
-
-    //scene_->moveToThread( physicsThread_.data() );
-    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
-                this, SLOT(moveThisOne(CharacterIF*) ) );
-
-    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
-             this, SLOT(gravity_this_one(CharacterIF*) ) );
-
-    physicsThread_.data()->start(); qDebug() << "mainThread:    Thread started. Moving on. ";
 }
 
 PlayScreen::~PlayScreen()
@@ -109,6 +88,33 @@ PlayScreen::initStage()
     VerticalBrickwall * wall = new VerticalBrickwall;
     wall->setPos( 400, scene_->height() - 50 );
     scene_->addItem( wall );
+
+    return true;
+}
+
+bool PlayScreen::initPhysics()
+{
+    physicsThread_.reset( new QThread(this) );
+    QTimer * gravityTimer{ new QTimer };
+    Gravitier * gravitor{ new Gravitier( scene_.get() ) };
+
+    gravityTimer->start( 50 );
+    gravityTimer->moveToThread( physicsThread_.data() );
+
+    QObject::connect( physicsThread_.data(), SIGNAL( started() ),
+                      gravityTimer, SLOT( start() ) );
+
+    QObject::connect( gravityTimer, SIGNAL(timeout()), gravitor, SLOT( makeGravity() ) );
+    gravitor->moveToThread( physicsThread_.data() );
+
+    //scene_->moveToThread( physicsThread_.data() );
+    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
+                this, SLOT(moveThisOne(CharacterIF*) ) );
+
+    connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
+             this, SLOT(gravity_this_one(CharacterIF*) ) );
+
+    physicsThread_.data()->start(); qDebug() << "mainThread:    Thread started. Moving on. ";
 
     return true;
 }

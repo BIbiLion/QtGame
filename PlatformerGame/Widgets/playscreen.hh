@@ -27,6 +27,7 @@ public:
     bool initGraphics();
     bool initHero();
     bool initStage();
+    bool initPhysics();
 
 public slots:
     void gravity_this_one( CharacterIF * thisOne );

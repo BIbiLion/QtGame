@@ -17,7 +17,7 @@ public:
     ///
     FloorContactBox( ){}
 
-    void setPosAndWidth( const QPointF & ParentPos, const QRectF &Rect  );
+    void setPosAndWidth(const QPointF & ParentPos, const QRectF &Rect  , QGraphicsScene *Scene);
 
     ///
     /// \brief move

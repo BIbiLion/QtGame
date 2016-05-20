@@ -35,7 +35,7 @@ public:
 
     void keyPressEvent(QKeyEvent *Event);
 public slots:
-    void gravitySlot();
+
 
 private:
     FloorContactBox footCollision_;

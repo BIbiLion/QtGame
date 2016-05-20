@@ -48,7 +48,7 @@ bool Protagonist::initPhysics()
     speed_x_ = 0;
     speed_y_ = 0;
 
-    footCollision_.setPosAndWidth( pos(), boundingRect() );
+    footCollision_.setPosAndWidth( pos(), boundingRect(), scene() );
 
     return true;
 }
@@ -65,7 +65,7 @@ void Protagonist::accelerateY()
 
 void Protagonist::setHitpoints(int Points)
 {
-
+    qDebug() << Points;
 }
 
 unsigned int Protagonist::getHitpoints() const
@@ -107,9 +107,4 @@ void Protagonist::keyPressEvent( QKeyEvent * Event )
         if ( speed_x_ < 10)
             speed_x_ += 2;
     }
-}
-
-void Protagonist::gravitySlot()
-{
-    gravity();
 }

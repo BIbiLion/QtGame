@@ -1,5 +1,7 @@
 #include "gravitier.hh"
 #include "Interface/characterif.hh"
+#include "Interface/obstacleif.hh"
+#include "Physics/floorcontactbox.hh"
 
 #include <memory>
 
@@ -54,7 +56,19 @@ void Gravitier::makeGravity()
             //tmpChar->gravity();
             emit moveThisOne( tmpChar );
             //qDebug() << "Character: " << tmpChar;
-        }else
+        }
+        else if ( FloorContactBox * box = dynamic_cast<FloorContactBox*>( item ) )
+        {
+            QList<QGraphicsItem*> collisions = box->collidingItems();
+            for ( auto col : collisions)
+            {
+                if ( ObstacleIF * obs = dynamic_cast<ObstacleIF*>( col ) )
+                {
+                    //TODO: Contact with an obstacle.
+                }
+            }
+        }
+        else
         {
 
         }
