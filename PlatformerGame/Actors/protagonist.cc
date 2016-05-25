@@ -40,7 +40,8 @@ bool Protagonist::initPhysics()
 
     footCollision_.setPosAndWidth( pos(), boundingRect(), scene() );
 
-    connect( &footCollision_, SIGNAL( collided() ),             this, SLOT( onGround() ) );
+    connect( &footCollision_, SIGNAL( collided() ),
+             this, SLOT( onGround() ) );
 
     //scene()->addItem( &footCollision_ );
 
@@ -81,6 +82,11 @@ void Protagonist::move()
         setY( y() + speed_y_ );
 }
 
+void Protagonist::addBoxToScene()
+{
+    scene()->addItem( &footCollision_ );
+}
+
 void Protagonist::keyPressEvent( QKeyEvent * Event )
 {
     if( Event->key() == Qt::Key_Up )
@@ -116,5 +122,5 @@ void Protagonist::setOnGround(bool onGround)
 
 void Protagonist::onGround()
 {
-    onGround_ = true;
+    setOnGround( true );
 }

@@ -66,14 +66,21 @@ PlayScreen::initGraphics()
 bool
 PlayScreen::initHero()
 {
+    // Making sure the hero starts as new in this scene.
     hero_.reset( new Protagonist );
-    //hero_->setPos( 100, 100 );
+
+    // Setting hero's initial position.
     hero_->setPos( 100, scene_->height() / 2 );
 
+    // Making sure the controls are focused on the hero.
     hero_->setFlag( QGraphicsItem::ItemIsFocusable );
     hero_->setFocus();
 
+    // Adding the hero to the scene.
     scene_->addItem( hero_.get() );
+
+    // Adding the hero's gravity collision.
+    hero_->addBoxToScene();
 
     return true;
 }

@@ -1,6 +1,7 @@
 #ifndef CHARACTERIF_HH
 #define CHARACTERIF_HH
 
+#include "Physics/floorcontactbox.hh"
 
 class CharacterIF
 {
@@ -44,6 +45,11 @@ public:
     virtual void gravity() = 0;
 
     virtual void move() = 0;
+
+    ///
+    /// \brief addBoxToScene
+    ///
+    virtual void addBoxToScene() = 0;
 
 private:
     /*

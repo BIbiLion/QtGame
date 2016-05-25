@@ -33,6 +33,7 @@ public:
     virtual unsigned int getHitpoints() const;
     virtual void gravity();
     virtual void move();
+    virtual void addBoxToScene();
 
     void keyPressEvent(QKeyEvent *Event);
 

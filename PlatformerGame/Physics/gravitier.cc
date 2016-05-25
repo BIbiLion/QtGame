@@ -62,9 +62,11 @@ void Gravitier::makeGravity()
             QList<QGraphicsItem*> collisions = box->collidingItems();
             for ( auto col : collisions)
             {
+                box->sendCollisionSignal();
                 if ( ObstacleIF * obs = dynamic_cast<ObstacleIF*>( col ) )
                 {
                     //TODO: Contact with an obstacle.
+                    box->sendCollisionSignal();
                 }
             }
         }
