@@ -18,3 +18,8 @@ void FloorContactBox::move(const int &XSpeed, const int &YSpeed)
     setX( x() + XSpeed );
     setY( y() + YSpeed );
 }
+
+void FloorContactBox::sendCollisionSignal()
+{
+    emit collided();
+}

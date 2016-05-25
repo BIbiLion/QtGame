@@ -4,9 +4,11 @@
 #include <QRectF>
 #include <QGraphicsRectItem>
 #include <QPointF>
+#include <QObject>
 
-class FloorContactBox : public QGraphicsRectItem
+class FloorContactBox : public QObject, public QGraphicsRectItem
 {
+    Q_OBJECT
 public:
 
     ///
@@ -16,7 +18,14 @@ public:
     /// initialization.
     ///
     FloorContactBox( ){}
+    ~FloorContactBox( ){}
 
+    ///
+    /// \brief setPosAndWidth
+    /// \param ParentPos
+    /// \param Rect
+    /// \param Scene
+    ///
     void setPosAndWidth(const QPointF & ParentPos, const QRectF &Rect  , QGraphicsScene *Scene);
 
     ///
@@ -30,6 +39,11 @@ public:
     /// Parent's speed on the y-axis.
     ///
     void move( const int & XSpeed, const int & YSpeed );
+
+    void sendCollisionSignal();
+
+signals:
+    void collided();
 
 private:
 

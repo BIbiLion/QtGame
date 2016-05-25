@@ -32,23 +32,16 @@ bool Protagonist::initArt()
     return true;
 }
 
-bool Protagonist::initGravity()
-{
-    gravityTimer = new QTimer;
-
-    QObject::connect( gravityTimer, SIGNAL( timeout() ),
-                      this, SLOT( gravitySlot() ) );
-    gravityTimer->start(50);
-
-    return true;
-}
-
 bool Protagonist::initPhysics()
 {
     speed_x_ = 0;
     speed_y_ = 0;
+    onGround_ = false;
 
     footCollision_.setPosAndWidth( pos(), boundingRect(), scene() );
+
+    connect( &footCollision_, SIGNAL( collided() ),
+             this, SLOT( onGround() ) );
 
     return true;
 }
@@ -92,6 +85,7 @@ void Protagonist::keyPressEvent( QKeyEvent * Event )
     if( Event->key() == Qt::Key_Up )
     {
         speed_y_ = -20;
+        onGround_ = false;
     }
     else if( Event->key() == Qt::Key_Down )
     {
@@ -107,4 +101,19 @@ void Protagonist::keyPressEvent( QKeyEvent * Event )
         if ( speed_x_ < 10)
             speed_x_ += 2;
     }
+}
+
+bool Protagonist::getOnGround() const
+{
+    return onGround_;
+}
+
+void Protagonist::setOnGround(bool onGround)
+{
+    onGround_ = onGround;
+}
+
+void Protagonist::onGround()
+{
+    onGround_ = true;
 }

@@ -22,8 +22,9 @@ public:
     // Initiation functions
     bool init();
     bool initArt();
-    bool initGravity();
     bool initPhysics();
+
+    void stopFalling();
 
     // CharacterIF functions:
     virtual void accelerateX();
@@ -34,14 +35,19 @@ public:
     virtual void move();
 
     void keyPressEvent(QKeyEvent *Event);
-public slots:
 
+    bool getOnGround() const;
+    void setOnGround( bool onGround );
+
+public slots:
+    void onGround();
 
 private:
     FloorContactBox footCollision_;
     QTimer * gravityTimer;
 
     long int speed_x_, speed_y_;
+    bool onGround_;
 };
 
 #endif // PROTAGONIST_HH
