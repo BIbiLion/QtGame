@@ -40,8 +40,9 @@ bool Protagonist::initPhysics()
 
     footCollision_.setPosAndWidth( pos(), boundingRect(), scene() );
 
-    connect( &footCollision_, SIGNAL( collided() ),
-             this, SLOT( onGround() ) );
+    connect( &footCollision_, SIGNAL( collided() ),             this, SLOT( onGround() ) );
+
+    //scene()->addItem( &footCollision_ );
 
     return true;
 }

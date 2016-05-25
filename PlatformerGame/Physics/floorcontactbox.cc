@@ -5,9 +5,11 @@
 #include <QList>
 #include <QGraphicsScene>
 
-void FloorContactBox::setPosAndWidth(const QPointF &ParentPos, const QRectF &Rect, QGraphicsScene * Scene)
+void FloorContactBox::setPosAndWidth(const QPointF &ParentPos, const QRectF &Rect,
+                                     QGraphicsScene * Scene)
 {
-    Scene->addItem( this );
+    if (Scene)
+        Scene->addItem( this );
     //qDebug() << "FloorContact Set to character.";
     setRect( ParentPos.x() + 1, ParentPos.y() + Rect.height() ,
              Rect.width() - 2 , 1 );
