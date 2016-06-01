@@ -56,23 +56,30 @@ void Gravitier::makeGravity()
             //tmpChar->gravity();
             emit moveThisOne( tmpChar );
             //qDebug() << "Character: " << tmpChar;
+            //qDebug() << "CharPos:\t\t " << item->pos();//
         }
         else if ( FloorContactBox * box = dynamic_cast<FloorContactBox*>( item ) )
         {
+            //qDebug() << "Gravitier:makeGravity:else if box";// Does get here.
+
+            //qDebug() << "FootColPos: \t" << box->pos();//
             QList<QGraphicsItem*> collisions = box->collidingItems();
+            //qDebug() << "Number of collisions " << collisions.size();
             for ( auto col : collisions)
             {
+                //qDebug() << "Got a list of colliding items.";
                 box->sendCollisionSignal();
+
                 if ( ObstacleIF * obs = dynamic_cast<ObstacleIF*>( col ) )
                 {
-                    //TODO: Contact with an obstacle.
+                    qDebug() << "This is a landing";
                     box->sendCollisionSignal();
                 }
             }
         }
         else
         {
-
+            //qDebug() << "Gravitier: makeGravity: else";
         }
     }
 }

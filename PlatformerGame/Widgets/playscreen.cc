@@ -79,6 +79,9 @@ PlayScreen::initHero()
     // Adding the hero to the scene.
     scene_->addItem( hero_.get() );
 
+    // Positioning the foot collision box.
+    hero_->setFootboxPos();
+
     // Adding the hero's gravity collision.
     hero_->addBoxToScene();
 
@@ -114,7 +117,6 @@ bool PlayScreen::initPhysics()
     QObject::connect( gravityTimer, SIGNAL(timeout()), gravitor, SLOT( makeGravity() ) );
     gravitor->moveToThread( physicsThread_.data() );
 
-    //scene_->moveToThread( physicsThread_.data() );
     connect( gravitor, SIGNAL(moveThisOne(CharacterIF*) ),
                 this, SLOT(moveThisOne(CharacterIF*) ) );
 

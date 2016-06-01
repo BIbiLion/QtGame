@@ -26,8 +26,7 @@ Protagonist::init()
 
 bool Protagonist::initArt()
 {
-    setPixmap( QPixmap( ":/graphics/Resources/chibiProt.png" ) );
-    setScale( 0.1 );
+    setPixmap( QPixmap( ":/graphics/Resources/chibiProt.png" ).scaled(150,150) );
 
     return true;
 }
@@ -38,14 +37,17 @@ bool Protagonist::initPhysics()
     speed_y_ = 0;
     onGround_ = false;
 
-    footCollision_.setPosAndWidth( pos(), boundingRect(), scene() );
+    setFootboxPos();
 
     connect( &footCollision_, SIGNAL( collided() ),
              this, SLOT( onGround() ) );
 
-    //scene()->addItem( &footCollision_ );
-
     return true;
+}
+
+void Protagonist::setFootboxPos()
+{
+    footCollision_.setPosAndWidth( pos(), boundingRect(), 0 );
 }
 
 void Protagonist::accelerateX()
@@ -71,28 +73,39 @@ unsigned int Protagonist::getHitpoints() const
 void Protagonist::gravity()
 {
     //qDebug() << "Protagonist::gravity()";
-    if( speed_y_ < 10 )
-        speed_y_ += 2;
+    if(!onGround_)
+    {
+        if( speed_y_ < 10 )
+            speed_y_ += 2;
+    }
 }
 
 void Protagonist::move()
 {
-    setX( x() + speed_x_ );
-    if( y() < scene()->height() -20 )
+    if( y() < scene()->height() )
+    {
+        setX( x() + speed_x_ );
         setY( y() + speed_y_ );
+
+        footCollision_.move( speed_x_, speed_y_ );
+    }
 }
 
 void Protagonist::addBoxToScene()
 {
     scene()->addItem( &footCollision_ );
+    qDebug() << "footCollision added to scene.";
 }
 
 void Protagonist::keyPressEvent( QKeyEvent * Event )
 {
     if( Event->key() == Qt::Key_Up )
     {
-        speed_y_ = -20;
-        onGround_ = false;
+        if(onGround_)
+        {
+            speed_y_ = -20;
+            onGround_ = false;
+        }
     }
     else if( Event->key() == Qt::Key_Down )
     {
@@ -122,5 +135,10 @@ void Protagonist::setOnGround(bool onGround)
 
 void Protagonist::onGround()
 {
-    setOnGround( true );
+    qDebug() << "Protagonist: " << "Got on ground.";
+    if(!onGround_)
+    {
+        setOnGround( true );
+        speed_y_ = 0;
+    }
 }

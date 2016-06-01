@@ -16,6 +16,8 @@ public:
 
 signals:
     void moveThisOne( CharacterIF * thisOne );
+    void gravityThisOne( CharacterIF * thisOne );
+    void stopThisOne( CharacterIF * thisOne );
 
 public slots:
     void makeGravity();

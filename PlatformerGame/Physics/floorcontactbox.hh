@@ -5,6 +5,7 @@
 #include <QGraphicsRectItem>
 #include <QPointF>
 #include <QObject>
+#include <QDebug>
 
 class FloorContactBox : public QObject, public QGraphicsRectItem
 {
@@ -26,19 +27,20 @@ public:
     /// \param Rect
     /// \param Scene
     ///
-    void setPosAndWidth(const QPointF & ParentPos, const QRectF &Rect  , QGraphicsScene *Scene);
+    void setPosAndWidth(const QPointF & ParentPos, const QRectF &Rect  , QGraphicsScene *Scene = 0);
 
     ///
     /// \brief move
     /// Moves the box along with its parent
     ///
-    /// \param XSpeed
-    /// Parent's speed on the x-axis.
+    /// \param Xpos
+    /// Parent's position on the x-axis.
     ///
-    /// \param YSpeed
-    /// Parent's speed on the y-axis.
+    /// \param Ypos
+    /// Parent's position on the y-axis.
     ///
-    void move( const int & XSpeed, const int & YSpeed );
+    void move( const int & Xspeed, const int & Yspeed );
+
 
     void sendCollisionSignal();
 

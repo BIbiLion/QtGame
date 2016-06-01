@@ -26,6 +26,8 @@ public:
 
     void stopFalling();
 
+    void setFootboxPos();
+
     // CharacterIF functions:
     virtual void accelerateX();
     virtual void accelerateY();
